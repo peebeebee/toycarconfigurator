@@ -96,6 +96,92 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+.app {
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100vh;
+}
+
+.app-header,
+.app-main,
+.app-navigation {
+    padding: 0 1rem;
+}
+
+.app-header {
+    background-color: #F39E32;
+    color: #000000;
+    flex: 0 0 50px;
+    background: white;
+}
+
+.app-header-title {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 13px 0;
+}
+
+.app-header-title span:nth-child(1) {
+    color: #E55655;
+}
+.app-header-title span:nth-child(2) {
+    color: #33798E;
+}
+
+
+.app-main {
+    flex: 1 1 60vh;
+    background-color: #fff;
+    position: relative;
+}
+
+.app-controls {
+    flex: 1 1 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    transform: perspective(800px) rotateX(0deg);
+    transform-style:  preserve-3d;
+    padding-bottom: 1rem;
+    font-size: 125%;
+}
+
+.app-loader {
+    bottom: 0;
+    height: 50px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+@keyframes app-loader {
+    0%        { transform: scaleX(-1) translateX(50%); }
+    50%       { transform: scaleX(-1) translateX(-50%); }
+    50.0001%  { transform: scaleX(1) translateX(50%); }
+    100%      { transform: scaleX(1) translateX(-50%); }
+}
+
+.app-loader:after {
+    animation: app-loader 5s ease-in-out infinite;
+    content: '🚗';
+    font-size: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    width: 80vw;
+}
 
 
 
@@ -106,6 +192,260 @@ textarea {
 
 
 
+/* /!\ You need to add vendor prefixes in order to render the CSS properly (or simply use http://leaverou.github.io/prefixfree/) /!\ */
+.app-main-viewer {
+    perspective: 800px;
+    position: absolute;
+    background: #fff;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    /* background: transparent; */
+    background-image: linear-gradient( #edfbff 50%, #424446 50.5%);
+    background-image: linear-gradient(#c3d4dd,#fff);
+}
+
+.app-main-viewer:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: '';
+    transform: perspective(800px) rotateX(85deg) scale(0.5) translateY(650px);
+    background: radial-gradient(closest-side, #ffffff94 200px, #bdc5ca 205px, #ffffff00 0px);
+}
+
+.app-main-viewer:after {
+    background: radial-gradient(closest-side, #b9c6cc 33%, transparent 66%);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: '';
+    transform: perspective(800px) rotateX(58deg) scale(0.3) translateY(400px);
+    z-index: -3;
+    transform-origin: 50% 66%;
+}
+
+.face {
+    box-shadow: inset 0 5px 42px -1px rgba(32, 50, 58, 0.15);
+    border: 1px solid #383838;
+}
+.scene, .shape, .face, .face-wrapper, .cr {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+.scene {
+    width: 60em;
+    height: 60em;
+    top: 50%;
+    left: 50%;
+    margin: -30em 0 0 -30em;
+}
+.shape {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    transform-origin: 50%;
+}
+.face, .face-wrapper {
+    overflow: hidden;
+    transform-origin: 0 0;
+    backface-visibility: hidden;
+    /* hidden by default, prevent blinking and other weird rendering glitchs */
+}
+.face {
+    background-size: 100% 100%!important;
+    background-position: center;
+}
+.face-wrapper .face {
+    left: 100%;
+    width: 100%;
+    height: 100%
+}
+.side {
+    left: 50%;
+}
+.cr, .cr .side {
+    height: 100%;
+}
+[class*="cuboid"] .ft, [class*="cuboid"] .bk {
+width: 100%;
+height: 100%;
+}
+[class*="cuboid"] .bk {
+left: 100%;
+}
+[class*="cuboid"] .rt {
+transform: rotateY(-90deg) translateX(-50%);
+}
+[class*="cuboid"] .lt {
+transform: rotateY(90deg) translateX(-50%);
+}
+[class*="cuboid"] .tp {
+transform: rotateX(90deg) translateY(-50%);
+}
+[class*="cuboid"] .bm {
+transform: rotateX(-90deg) translateY(-50%);
+}
+[class*="cuboid"] .lt {
+left: 100%;
+}
+[class*="cuboid"] .bm {
+top: 100%;
+}
+[class*="cylinder"] .tp {
+transform: rotateX(90deg) translateY(-52.5%) scale3d(1.1, 1.1, 1);
+transform-origin: 50% 0;
+}
+[class*="cylinder"] .bm {
+transform: rotateX(-90deg) translateY(-52.5%) scale3d(1.1, 1.1, 1);
+transform-origin: 50% 0;
+}
+[class*="cylinder"] .tp, [class*="cylinder"] .bm, [class*="cylinder"] .tp .photon-shader, [class*="cylinder"] .bm .photon-shader {
+border-radius: 50%;
+}
+[class*="cylinder"] .bm {
+top: 100%;
+}
+
+
+
+/* .app-car-body styles */
+.app-car-body {transform: translate3D(0em, 1.2em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(20deg);opacity:1;width:11em;height:3.5em;margin:-1.75em 0 0 -5.5em;}
+.app-car-body .ft {
+transform:translateZ(2.75em);
+}
+.app-car-body .bk {
+transform:translateZ(-2.75em) rotateY(180deg);
+}
+.app-car-body .rt, .app-car-body .lt {
+width:5.5em;
+height:3.5em;
+}
+.app-car-body .tp, .app-car-body .bm {
+width:11em;
+height:5.5em;
+}
+.app-car-body .face {background-color: inherit;}
+
+.cylinder-1 {
+    transform:translate3D(-3em, 2.5em, 2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
+}
+.cylinder-2 {
+    transform:translate3D(4em, 2.5em, 2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
+}
+.cylinder-3 {
+    transform:translate3D(4em, 2.5em, -2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
+}
+.cylinder-4 {
+    transform:translate3D(-3em, 2.5em, -2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
+}
+/* .app-car-wheel styles */
+.app-car-wheel {
+    opacity:1;
+    width:2em;
+    height:1em;
+    margin:-0.5em 0 0 -1em;
+    background-color: inherit;
+}
+.app-car-wheel .tp,
+.app-car-wheel .bm {
+    width:2em;
+    height:2em;
+    background-color: inherit;
+    background-image: radial-gradient(transparent 40%, #4a4a4a 40.25%);
+}
+.app-car-wheel .side {
+    width:0.8534271247461901em;
+    height:1em;
+    background: #4a4a4a;
+    box-shadow: inset 0 0 11px 1px #383838;
+}
+.app-car-wheel .s0 {
+    transform: rotateY(22.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s1 {
+    transform: rotateY(67.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s2 {
+    transform: rotateY(112.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s3 {
+    transform: rotateY(157.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s4 {
+    transform: rotateY(202.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s5 {
+    transform: rotateY(247.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s6 {
+    transform: rotateY(292.5deg) translate3D(-50%, 0, 0.975em);
+}
+.app-car-wheel .s7 {
+    transform: rotateY(337.5deg) translate3D(-50%, 0, 0.975em);
+}
+
+
+/* .app-car-cabine styles */
+.app-car-cabine {
+    transform: translate3D(0.5em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(17.4deg);
+    transform-origin: 0 100%;
+    opacity: 1;
+    width: 5.5em;
+    height: 5em;
+    margin: -2.5em 0 0 -2.75em;
+}
+.app-car-cabine .ft {
+    transform:translateZ(2.25em);
+}
+.app-car-cabine .bk {
+    transform:translateZ(-2.25em) rotateY(180deg);
+}
+.app-car-cabine .rt, .app-car-cabine .lt {
+width:4.5em;
+height:5em;
+}
+.app-car-cabine .tp, .app-car-cabine .bm {
+width:5.5em;
+height:4.5em;
+}
+.app-car-cabine .face {
+    background-color: inherit;
+    box-shadow: inset 0 4px 0px 0px rgba(255, 255, 255, 0.77);
+    background-image: linear-gradient(296deg, transparent 0%, #ffffff7a 43% , #ffffff6e 47%, #ffffff00 52%);}
+
+
+
+
+
+
+.app-controls-set {
+    padding: 1rem;
+    box-shadow: inset 0px 0px 5px -1px #707c84;
+    border-radius: 10px;
+    background: #e8eff214;
+    transform: rotateX(30deg);
+    transform-origin: 50% 50%;
+}
+
+.app-controls-set-title {
+    background: white;
+    outline: 5px solid white;
+    font-weight: bold;
+    color: #521120;
+}
+
+
+
+.app-control-label {
+    display: block;
+}
 
 
 

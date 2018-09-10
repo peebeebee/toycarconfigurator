@@ -1,10 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="nl">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Kunstmaan Car Configurator</title>
+  <title>Car Configurator</title>
   <meta name="description" content="Minimale demo-applicatie voor Kunstmaan">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="manifest" href="site.webmanifest">
@@ -12,7 +11,6 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
   <!--[if lte IE 10]>
     <p class="browserupgrade">
@@ -20,14 +18,148 @@
       Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
     </p>
   <![endif]-->
-
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
+  <section class="app">
+      <header class="app-header">
+        <h1 class="app-header-title">
+          <span>Toy</span> 
+          <span>Car</span> 
+          <span>Configurator</span>
+        </h1>
+      </header>
+      <main class="app-main">
+        <div class="app-main-viewer" id="app-viewer">
+          <div class="scene" id="app-scene" style="transform: rotateX(0deg) rotateY(0) scale3d(1.5, 1.5, 1.5);">
+            <div class="app-car" id="app-car">
+              <div class="shape cuboid-1 app-car-body" id="app-car-body">
+                <div class="face ft"></div>
+                <div class="face bk"></div>
+                <div class="face rt"></div>
+                <div class="face lt"></div>
+                <div class="face bm"></div>
+                <div class="face tp"></div>
+              </div>
+              <div class="shape cuboid-2 app-car-cabine" id="app-car-cabine">
+                <div class="face ft"></div>
+                <div class="face bk"></div>
+                <div class="face rt"></div>
+                <div class="face lt"></div>
+                <div class="face bm"></div>
+                <div class="face tp"></div>
+              </div>
+              <div class="app-car-wheels" id="app-car-wheels">
+                <div class="shape cylinder-1 app-car-wheel">
+                  <div class="face bm"></div>
+                  <div class="face tp"></div>
+                  <div class="face side s0"></div>
+                  <div class="face side s1"></div>
+                  <div class="face side s2"></div>
+                  <div class="face side s3"></div>
+                  <div class="face side s4"></div>
+                  <div class="face side s5"></div>
+                  <div class="face side s6"></div>
+                  <div class="face side s7"></div>
+                </div>
+                <div class="shape cylinder-2 app-car-wheel">
+                  <div class="face bm"></div>
+                  <div class="face tp"></div>
+                  <div class="face side s0"></div>
+                  <div class="face side s1"></div>
+                  <div class="face side s2"></div>
+                  <div class="face side s3"></div>
+                  <div class="face side s4"></div>
+                  <div class="face side s5"></div>
+                  <div class="face side s6"></div>
+                  <div class="face side s7"></div>
+                </div>
+                <div class="shape cylinder-3 app-car-wheel">
+                  <div class="face bm"></div>
+                  <div class="face tp"></div>
+                  <div class="face side s0"></div>
+                  <div class="face side s1"></div>
+                  <div class="face side s2"></div>
+                  <div class="face side s3"></div>
+                  <div class="face side s4"></div>
+                  <div class="face side s5"></div>
+                  <div class="face side s6"></div>
+                  <div class="face side s7"></div>
+                </div>
+                <div class="shape cylinder-4 app-car-wheel">
+                  <div class="face bm"></div>
+                  <div class="face tp"></div>
+                  <div class="face side s0"></div>
+                  <div class="face side s1"></div>
+                  <div class="face side s2"></div>
+                  <div class="face side s3"></div>
+                  <div class="face side s4"></div>
+                  <div class="face side s5"></div>
+                  <div class="face side s6"></div>
+                  <div class="face side s7"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <nav class="app-controls">
+        <fieldset class="app-controls-set">
+            <legend class="app-controls-set-title">Car</legend>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-car-brand">Brand</label>
+              <select class="app-control-input" id="app-control-car-brand" name="app-control-car-brand">
+                <option>BMW</option>
+                <option>Audi</option>
+                <option>Mercedes</option>
+              </select>
+            </div>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-car-model">Racecar</label>
+              <input class="app-control-input" type="checkbox" id="app-control-car-model" name="app-control-car-model" >
+            </div>
+        </fieldset>
+        <fieldset class="app-controls-set">
+            <legend class="app-controls-set-title">Cabine</legend>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-cabine-size">Size</label>
+              <input class="app-control-input" type="range" id="app-control-cabine-size" name="app-control-cabine-size" min="1" max="1.5" step=".1">
+            </div>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-cabine-offset">Offset</label>
+              <input class="app-control-input" type="range" id="app-control-cabine-offset" name="app-control-cabine-offset" min="-25" max="25">
+            </div>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-cabine-color">Color</label>
+              <input class="app-control-input" type="color" id="app-control-cabine-color" name="app-control-cabine-color">
+            </div>
+        </fieldset>
+        <fieldset class="app-controls-set">
+            <legend class="app-controls-set-title">Body</legend>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-body-size">Size</label>
+              <input class="app-control-input" type="range" id="app-control-body-size" name="app-control-body-size" min="1" max="1.1" step=".05">
+            </div>
+            <div class="app-control">
+                <label class="app-control-label" for="app-control-body-offset">Offset</label>
+                <input class="app-control-input" type="range" id="app-control-body-offset" name="app-control-body-offset" min="20" max="25">
+              </div>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-body-color">Color</label>
+              <input class="app-control-input" type="color" id="app-control-body-color" name="app-control-body-color">
+            </div>
+        </fieldset>
+        <fieldset class="app-controls-set">
+            <legend class="app-controls-set-title">Wheels</legend>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-wheels-size">Size</label>
+              <input class="app-control-input" type="range" id="app-control-wheels-size" name="app-control-wheels-size" min="1" max="1.25" step=".05">
+            </div>
+            <div class="app-control">
+              <label class="app-control-label" for="app-control-wheels-color">Color</label>
+              <input class="app-control-input" type="color" id="app-control-wheels-color" name="app-control-wheels-color">
+            </div>
+        </fieldset>
+      </nav>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
   <script src="js/main.js"></script>
 </body>
-
 </html>
