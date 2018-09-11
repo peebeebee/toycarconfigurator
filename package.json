@@ -1,0 +1,19 @@
+{
+  "name": "kunstmaan-toy-car-configurator",
+  "version": "0.0.1",
+  "description": "A car configurator app for Kunstmaan to show off my technical skills",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peebeebee/toycarconfigurator.git"
+  },
+  "author": "Peter Briers <peter@bijtendblanco.be>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peebeebee/toycarconfigurator/issues"
+  },
+  "homepage": "https://github.com/peebeebee/toycarconfigurator#readme"
+}
