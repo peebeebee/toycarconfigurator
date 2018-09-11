@@ -137,20 +137,19 @@ textarea {
 
 
 .app-main {
-    flex: 1 1 60vh;
+    flex: 1 0 40vh;
     background-color: #fff;
     position: relative;
 }
 
 .app-controls {
-    flex: 1 1 25vh;
+    flex: 0 0 150px;
     display: flex;
-    align-items: flex-end;
+    /* margin: 0 .5rem .5rem; */
+    flex-direction: column;
+    font-size: 100%;
+    align-items: flex-start;
     justify-content: space-around;
-    transform: perspective(800px) rotateX(0deg);
-    transform-style:  preserve-3d;
-    padding-bottom: 1rem;
-    font-size: 125%;
 }
 
 .app-loader {
@@ -218,16 +217,17 @@ textarea {
 }
 
 .app-main-viewer:after {
-    background: radial-gradient(closest-side, #b9c6cc 33%, transparent 66%);
+    background: radial-gradient(closest-side, #b9c6cc 50px, transparent 150px);
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
     content: '';
-    transform: perspective(800px) rotateX(58deg) scale(0.3) translateY(400px);
+    transform: perspective(800px) rotateX(75deg) scale(1) translateY(0px);
     z-index: -3;
-    transform-origin: 50% 66%;
+    transform-origin: 50% 100%;
+    /* background: red; */
 }
 
 .face {
@@ -313,9 +313,6 @@ border-radius: 50%;
 top: 100%;
 }
 
-
-
-/* .app-car-body styles */
 .app-car-body {transform: translate3D(0em, 1.2em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(20deg);opacity:1;width:11em;height:3.5em;margin:-1.75em 0 0 -5.5em;}
 .app-car-body .ft {
 transform:translateZ(2.75em);
@@ -331,7 +328,7 @@ height:3.5em;
 width:11em;
 height:5.5em;
 }
-.app-car-body .face {background-color: inherit;}
+.app-car-body .face {background-color: currentColor;}
 
 .cylinder-1 {
     transform:translate3D(-3em, 2.5em, 2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
@@ -345,19 +342,17 @@ height:5.5em;
 .cylinder-4 {
     transform:translate3D(-3em, 2.5em, -2.5em) rotateX(-180deg) rotateY(270deg) rotateZ(90deg);
 }
-/* .app-car-wheel styles */
 .app-car-wheel {
     opacity:1;
     width:2em;
     height:1em;
     margin:-0.5em 0 0 -1em;
-    background-color: inherit;
 }
 .app-car-wheel .tp,
 .app-car-wheel .bm {
     width:2em;
     height:2em;
-    background-color: inherit;
+    background-color: currentColor;
     background-image: radial-gradient(transparent 40%, #4a4a4a 40.25%);
 }
 .app-car-wheel .side {
@@ -392,7 +387,6 @@ height:5.5em;
 }
 
 
-/* .app-car-cabine styles */
 .app-car-cabine {
     transform: translate3D(0.5em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(17.4deg);
     transform-origin: 0 100%;
@@ -422,23 +416,27 @@ height:4.5em;
 
 
 
-
+.app-car, 
+.app-car-wheels {
+    transform-style: preserve-3d;
+    height: 100%;
+}
 
 
 .app-controls-set {
-    padding: 1rem;
-    box-shadow: inset 0px 0px 5px -1px #707c84;
-    border-radius: 10px;
+    padding: .5rem 1rem;
     background: #e8eff214;
-    transform: rotateX(30deg);
-    transform-origin: 50% 50%;
+    margin-top: 0;
+    flex: 1 0 100%;
+    position: relative;
 }
 
 .app-controls-set-title {
-    background: white;
-    outline: 5px solid white;
     font-weight: bold;
     color: #521120;
+    font-size: 1rem;
+    margin: 0;
+    display: none;
 }
 
 
@@ -447,10 +445,113 @@ height:4.5em;
     display: block;
 }
 
+.app-control {
+    display: flex;
+    padding: 0.25em 0;
+    justify-content: space-between;
+}
 
+.app-controls-container {
+    flex: 0 0 auto;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    align-items: stretch;
+    align-items: flex-end;
+    background: #75514f2e;
+    color: #000000a1;
+    box-shadow: inset 0 5px 6px -6px #fefeff;
+    background-image: linear-gradient(white 0%, #2d80b300)
+}
 
+.app-controls-pagination {
+    display: flex;
+    padding: 0;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    width: 100%;
+    /* flex: 0 0; */
+}
 
+.app-controls-pagination-link {
+    text-decoration: none;
+    /* font-weight: bold; */
+    font-size: 100;
+    color: #32788e;
+    color: #e45655;
+    padding: .5rem;
+    display: inline-block;
+}
 
+.app-control-anchor:active {
+    color: yellowgreen;
+}
+
+.app-control-anchor {
+    text-align: right;
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: block;
+    left: 0;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+}
+
+@media screen and (orientation: landscape) {
+
+    .app-header {
+        display: none;
+    }
+
+    .app-container {
+        /* flex-direction: row; */
+    }
+    .app-controls {
+        justify-content:  space-between;
+        width: auto;
+        flex: 0 0 auto;
+    }
+    .app-controls-container {
+        align-items: flex-start;
+        flex: 0 0 auto;
+    }
+    .app-controls-set {
+        transform: none;
+        display: flex;
+        flex-direction: row;
+        background: none;
+        padding: 0 0.5rem;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        /* margin: 6px 0px; */
+        align-items: stretch;
+    }
+    .app-control {
+        flex-direction: row;
+        flex: 0 1 140px;
+        justify-content: flex-start;
+        /* border: 1px solid red; */
+        padding: .5rem;
+    }
+
+    .app-control-input {
+        width: 75px;
+        margin-left: 1rem;
+    }
+
+    .app-controls-set-title {
+        flex: 1 1 100%;
+        display: none;
+    }
+
+} 
 
 
 /* ==========================================================================

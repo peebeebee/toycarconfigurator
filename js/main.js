@@ -3,6 +3,7 @@ class App {
         const controls = new Controls(store);
         const viewport = new Viewport(store);
         const renderer = new Renderer(store);
+        renderer.update();
     }
 }
 
@@ -227,7 +228,7 @@ class Viewport {
 class Renderer {
 
     constructor(store) {
-        store.subscribe(this.render.bind(this));
+        store.subscribe(this.update.bind(this));
         this.store = store;
         this.car = document.getElementById('app-car-');
         this.cabine = document.getElementById('app-car-cabine');
@@ -237,41 +238,41 @@ class Renderer {
         this.wheelDefaults = _.map(this.wheels.querySelectorAll('.app-car-wheel'), el => window.getComputedStyle(el).transform);
     }
 
-    render() {
+    update() {
         // We don't need any deepchecking, because everything is done through CSS Hardware optimised attributes
         const state = this.store.getState();
-        this.renderCar(state);
-        this.renderCabine(state);
-        this.renderBody(state);
-        this.renderWheels(state);
+        this.updateCar(state);
+        this.updateCabine(state);
+        this.updateBody(state);
+        this.updateWheels(state);
         this.setScene(state);
     }
 
-    renderCar(state) {
+    updateCar(state) {
         console.log('state', state);
     }
 
-    renderCabine(state) {
+    updateCabine(state) {
         this.cabine.style.transform = [
             `translate3D(${state.cabine.offset}px, 0, 0)`,
             `skew(${(state.car.model === true) ? '20deg' : '0deg'})`,
             `scale3d(1, ${state.cabine.size}, 1)`,
         ].join(' ');
-        this.cabine.style.backgroundColor = state.cabine.color;
+        this.cabine.style.color = state.cabine.color;
     }
 
-    renderBody(state) {
+    updateBody(state) {
         this.body.style.transform = [
             `translate3D(0, ${state.body.offset}px, 0)`,
             `skew(${(state.car.model === true) ? '20deg' : '0deg'})`,
             `scale3d(${state.body.size}, 1, 1)`,
         ].join(' ');
-        this.body.style.backgroundColor = state.body.color;
+        this.body.style.color = state.body.color;
     }
 
-    renderWheels(state) {
+    updateWheels(state) {
         let x = `scale3d(1.5, 1.5, 1.5)`;
-        this.wheels.style.backgroundColor = state.wheels.color;
+        this.wheels.style.color = state.wheels.color;
         let wheels = this.wheels.querySelectorAll('.app-car-wheel').forEach((wheel, index) => {
             console.log('wtf', this.wheelDefaults[index]);
             let xxx = [
@@ -284,7 +285,6 @@ class Renderer {
     }
 
     setScene(state) {
-        // this.scene.style.transform = `rotateY(${this.rotateX}deg) rotateZ(${this.rotateZ}deg) scale(1.5) scaleZ(1.5)`;
         this.scene.style.transform = `rotateY(${state.scene.rotateX}deg) scale3d(1.5, 1.5, 1.5)`;
     }
 
@@ -313,14 +313,13 @@ const createReducer = (id) => {
 }
 
 const appReducer = (state = {}, action = {}) => {
-    let newState = {
+    return {
         car: reducers.car(state.car, action),
         cabine: reducers.cabine(state.cabine, action),
         body: reducers.body(state.body, action),
         wheels: reducers.wheels(state.wheels, action),
         scene: reducers.scene(state.scene, action),
     };
-    return newState;
 }
 
 const baseState = {
@@ -350,4 +349,3 @@ const baseState = {
 }
 const store = new Store(appReducer, baseState);
 const app = new App(store);
-
