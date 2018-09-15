@@ -117,15 +117,18 @@ textarea {
 .app-header {
     background-color: #F39E32;
     color: #000000;
-    flex: 0 0 50px;
+    flex: 0 0 auto;
     background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .app-header-title {
     font-size: 24px;
     font-weight: 400;
     line-height: 1;
-    margin: 13px 0;
+    margin: .5rem 0;
 }
 
 .app-header-title span:nth-child(1) {
@@ -504,10 +507,28 @@ height:4.5em;
     flex: 1 0;
 }
 
+
+.app-save {
+    text-shadow: 2px 2px 4px #0000002e;
+    transition: opacity 500ms ease-in;
+}
+
+.app-save:hover,
+.app-save:active {
+    text-shadow: 1px 1px 2px #00000054;
+    transform: translateY(2px);
+}
+
+.app-save.app-save--saved {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 500ms ease-in-out;
+}
+
 @media screen and (orientation: landscape) {
 
     .app-header {
-        display: none;
+        /* display: none; */
     }
 
     .app-container {
