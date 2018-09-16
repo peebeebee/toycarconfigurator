@@ -389,57 +389,54 @@ height:5.5em;
     transform: rotateY(337.5deg) translate3D(-50%, 0, 0.975em);
 }
 
-
 .app-car-cabine {
+    height: 4em;
+    margin: -2.5em 0 0 -2.75em;
+    opacity: 1;
     transform: translate3D(0.5em, 0em, 0em) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(17.4deg);
     transform-origin: 0 100%;
-    opacity: 1;
     width: 5.5em;
-    height: 5em;
-    margin: -2.5em 0 0 -2.75em;
 }
 .app-car-cabine .ft {
     transform:translateZ(2.25em);
 }
 .app-car-cabine .bk {
-    transform:translateZ(-2.25em) rotateY(180deg);
+    transform: translateZ(-2em) rotateY(180deg);
 }
 .app-car-cabine .rt, .app-car-cabine .lt {
-width:4.5em;
-height:5em;
+    height:5em;
+    width:4.5em;
 }
 .app-car-cabine .tp, .app-car-cabine .bm {
-width:5.5em;
-height:4.5em;
+    height:4.5em;
+    width:5.5em;
 }
 .app-car-cabine .face {
-    background-color: inherit;
+    background-color: currentColor;
+    background-image: linear-gradient(296deg, transparent 0%, #ffffff7a 43% , #ffffff6e 47%, #ffffff00 52%);
     box-shadow: inset 0 4px 0px 0px rgba(255, 255, 255, 0.77);
-    background-image: linear-gradient(296deg, transparent 0%, #ffffff7a 43% , #ffffff6e 47%, #ffffff00 52%);}
-
-
+}
 
 .app-car, 
 .app-car-wheels {
-    transform-style: preserve-3d;
     height: 100%;
+    transform-style: preserve-3d;
 }
 
-
 .app-controls-set {
-    padding: .5rem 1rem;
     background: #e8eff214;
-    margin-top: 0;
     flex: 1 0 100%;
+    margin-top: 0;
+    padding: .5rem 1rem;
     position: relative;
 }
 
 .app-controls-set-title {
-    font-weight: bold;
     color: #521120;
-    font-size: 1rem;
-    margin: 0;
     display: none;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 

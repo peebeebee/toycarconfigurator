@@ -1,7 +1,7 @@
 const baseState = {
     car: {
         main: {
-            brand: 0,
+            brand: 'BMW',
             model: 'racecar'
         },
         cabine: {
