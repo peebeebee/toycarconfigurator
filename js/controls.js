@@ -1,3 +1,5 @@
+import {get as _get} from 'lodash';
+import * as localforage from 'localforage';
 import {store} from './store.js';
 
 class ControlCar {
@@ -20,7 +22,7 @@ class ControlCar {
 
     render() {
         let state = store.getState();
-        this.element[this.propertyKey] = _.get(state.car, this.stateKey);
+        this.element[this.propertyKey] = _get(state.car, this.stateKey);
     }
 }
 

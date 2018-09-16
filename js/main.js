@@ -1,3 +1,4 @@
+import * as localforage from 'localforage';
 import { initStore } from './store.js';
 import { initControls } from './controls.js';
 import { initCar } from './car.js';
@@ -18,8 +19,8 @@ function run(state = baseState) {
     });
 }
 
-
 export function initialize() {
     localforage.getItem(STORAGE_KEY).then(run, run);
 }
 
+initialize();

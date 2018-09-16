@@ -1,11 +1,11 @@
 
 
+import {map as _map} from 'lodash';
 import {store} from './store.js';
 
 let car, wheelDefaults;
 
 function render(state) {
-    // renderMain(state);
     renderCabine(state);
     renderBody(state);
     renderWheels(state);
@@ -46,6 +46,6 @@ export function initCar() {
         body: document.getElementById('app-car-body'),
         wheels: document.getElementById('app-car-wheels'),
     }
-    wheelDefaults = _.map(car.wheels.querySelectorAll('.app-car-wheel'), el => window.getComputedStyle(el).transform);
+    wheelDefaults = _map(car.wheels.querySelectorAll('.app-car-wheel'), el => window.getComputedStyle(el).transform);
     store.subscribe(render);
 }
