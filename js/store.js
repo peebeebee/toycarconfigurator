@@ -2,21 +2,21 @@ const baseState = {
     car: {
         main: {
             brand: 0,
-            type: 'racecar'
+            model: 'racecar'
         },
         cabine: {
             color: '#d4e0e6',
             offset: 0,
-            size: 1,
+            size: 1.3,
         },
         body: {
             color: '#e65757',
-            offset: 1,
-            size: 1,
+            offset: 23,
+            size: 1.05,
         },
         wheels: {
             color: '#ffef00',
-            size: 1,
+            size: 1.15,
         },
     },
     scene: {
