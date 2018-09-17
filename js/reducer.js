@@ -1,7 +1,7 @@
-import {merge as _merge} from 'lodash';
+import merge from 'deepmerge';
 
 export const reducer = (state = {}, action = {}) => {
-    const createNewState = (changes) => Object.freeze(_merge({}, state, changes));
+    const createNewState = (changes) => Object.freeze(merge(state, changes));
     switch(action.type) {
         case 'LOAD':
             return createNewState({

@@ -1,7 +1,11 @@
-import {get as _get} from 'lodash';
-import * as localforage from 'localforage';
+import {set as idbSet } from 'idb-keyval';
 import {store} from './store.js';
 
+function get(objectToTraverse, keyString) {
+    return keyString.split('.').reduce((prev, curr) => {
+        return (prev === undefined) ? undefined : prev[curr];
+    }, objectToTraverse);
+}
 class ControlCar {
     constructor(elementId, stateKey, propertyKey = 'value') {
         this.stateKey = stateKey;
@@ -22,7 +26,7 @@ class ControlCar {
 
     render() {
         let state = store.getState();
-        this.element[this.propertyKey] = _get(state.car, this.stateKey);
+        this.element[this.propertyKey] = get(state.car, this.stateKey);
     }
 }
 
@@ -39,8 +43,8 @@ export function initControls () {
     new ControlCar('app-control-wheels-size', 'wheels.size');
     const saveButton = document.getElementById('app-save');
     saveButton.addEventListener('click', (evt) => {
-        localforage.setItem(STORAGE_KEY, store.getState(), (value) => {
-            console.log('Using:' + localforage.driver());
+        idbSet(STORAGE_KEY, store.getState())
+            .then((value) => {
             console.log('Saved: ' + value);
         });
         saveButton.classList.add('app-save--saved');

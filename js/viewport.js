@@ -1,4 +1,3 @@
-import {each as _each} from 'lodash';
 import {store} from './store.js';
 
 let viewport, viewer, scene;
@@ -24,7 +23,7 @@ function handleMouseMove(evt) {
 function handleTouchStart(evt) {
     evt.preventDefault();
     console.log("touchstart.", evt.changedTouches);
-    _each(evt.changedTouches, (value, index) => {
+    [].forEach.call(evt.changedTouches, (value, index) => {
         viewport.ongoingTouches.push(copyTouch(value));
         console.log("touchstart:" + index + ".");
     });
@@ -32,7 +31,7 @@ function handleTouchStart(evt) {
 
 function handleTouchMove(evt) {
     evt.preventDefault();
-    _each(evt.changedTouches, (touch) => {
+    [].forEach.call(evt.changedTouches, (touch) => {
         let idx = ongoingTouchIndexById(touch.identifier);
         if (idx >= 0) {
             const ongoingTouch = viewport.ongoingTouches[idx];
@@ -52,7 +51,7 @@ function handleTouchMove(evt) {
 function handleTouchEnd(evt) {
     evt.preventDefault();
     console.log("touchend");
-    _each(evt.changedTouches, (touch) => {
+    [].forEach.call(evt.changedTouches, (touch) => {
         let idx = ongoingTouchIndexById(touch.identifier);
         if (idx >= 0) {
             // do something
@@ -66,7 +65,7 @@ function handleTouchEnd(evt) {
 function handleTouchCancel(evt) {
     evt.preventDefault();
     console.log("touchcancel.");
-    _each(evt.changedTouches, (touch) => {
+    [].forEach.call(evt.changedTouches, (touch) => {
         var idx = ongoingTouchIndexById(touch.identifier);
         viewport.ongoingTouches.splice(idx, 1);  // remove it; we're done
     });

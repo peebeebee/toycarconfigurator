@@ -1,6 +1,5 @@
 
 
-import {map as _map} from 'lodash';
 import {store} from './store.js';
 
 let car, wheelDefaults;
@@ -46,6 +45,6 @@ export function initCar() {
         body: document.getElementById('app-car-body'),
         wheels: document.getElementById('app-car-wheels'),
     }
-    wheelDefaults = _map(car.wheels.querySelectorAll('.app-car-wheel'), el => window.getComputedStyle(el).transform);
+    wheelDefaults = [].map.call(car.wheels.querySelectorAll('.app-car-wheel'), el => window.getComputedStyle(el).transform);
     store.subscribe(render);
 }

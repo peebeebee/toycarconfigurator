@@ -1,14 +1,14 @@
-import * as localforage from 'localforage';
-import { initStore } from './store.js';
-import { initControls } from './controls.js';
-import { initCar } from './car.js';
-import { initViewport } from './viewport.js';
-import { reducer } from './reducer.js';
-import { store } from './store.js';
+import {get as idbGet } from 'idb-keyval';
+import {initStore} from './store.js';
+import {initControls} from './controls.js';
+import {initCar} from './car.js';
+import {initViewport} from './viewport.js';
+import {reducer} from './reducer.js';
+import {store} from './store.js';
 
 const STORAGE_KEY = 'toyCarConfiguratorConfig';
 
-function run(state = baseState) {
+function run(state) {
     initStore(reducer, state);
     initViewport();
     initCar();
@@ -20,7 +20,7 @@ function run(state = baseState) {
 }
 
 export function initialize() {
-    localforage.getItem(STORAGE_KEY).then(run, run);
+    idbGet(STORAGE_KEY).then(run, run);
 }
 
 initialize();
