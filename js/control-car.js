@@ -13,7 +13,6 @@ export class ControlCar {
         this.element = document.getElementById(elementId);
         this.element.addEventListener("input", this.update.bind(this));
         store.subscribe(this.render.bind(this));
-        // store.subscribe(this.render.bind(this));
     }
 
     update() {
