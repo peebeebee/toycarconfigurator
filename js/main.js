@@ -1,4 +1,4 @@
-import {get as idbGet } from 'idb-keyval';
+import {get as idbGet} from 'idb-keyval';
 import {initStore} from './store.js';
 import {initControls} from './controls.js';
 import {initCar} from './car.js';

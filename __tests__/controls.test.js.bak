@@ -1,0 +1,39 @@
+import {initControls} from './controls.js';
+
+function setupControls() {
+    let controls = [
+        'app-control-main-brand',
+        'app-control-main-model',
+        'app-control-cabine-color',
+        'app-control-cabine-offset',
+        'app-control-cabine-size',
+        'app-control-body-color',
+        'app-control-body-offset',
+        'app-control-body-size',
+        'app-control-wheels-color',
+        'app-control-wheels-size',
+    ];
+    controls.forEach
+    document.body.appendChild()
+}
+
+beforeEach(() => {
+    initializeCityDatabase();
+  });
+
+it('should add eventHandlers to all the controls', () => {
+    const adder = jest
+      .spyOn(global, 'addEventListener')
+      .mockImplementation(() => {});
+    const remover = jest
+      .spyOn(global, 'removeEventListener')
+      .mockImplementation(() => {});
+
+    initControls();
+    expect(adder).toHaveBeenCalled();
+});
+
+
+it('should dispatch to the store after the value of a control is changed', () => {});
+
+it('should')

@@ -4,12 +4,6 @@ import {store} from './store.js';
 
 let car, wheelDefaults;
 
-function render(state) {
-    renderCabine(state);
-    renderBody(state);
-    renderWheels(state);
-}
-
 function renderCabine(state) {
     car.cabine.style.transform = [
         `translate3D(${state.car.cabine.offset}px, 0, 0)`,
@@ -36,6 +30,13 @@ function renderWheels(state) {
             `scale3d(${state.car.wheels.size}, ${state.car.wheels.size}, ${state.car.wheels.size})`
         ].join(' ');
     });
+}
+
+function render() {
+    const state = store.getState();
+    renderCabine(state);
+    renderBody(state);
+    renderWheels(state);
 }
 
 export function initCar() {
