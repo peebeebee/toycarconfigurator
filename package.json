@@ -13,8 +13,8 @@
     "url": "git+https://github.com/peebeebee/toycarconfigurator.git"
   },
   "engines": {
-    "node": "20.18.0",
-    "npm": "10.8.2"
+    "node": "20.x",
+    "npm": "10.x"
   },
   "author": "Peter Briers <peter@bijtendblanco.be>",
   "license": "MIT",
