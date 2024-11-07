@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "preserve": "rm -rf dist",
-    "serve": "parcel index.html"
+    "serve": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
