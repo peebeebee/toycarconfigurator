@@ -1,7 +1,7 @@
 {
-  "name": "kunstmaan-toy-car-configurator",
+  "name": "toy-car-configurator",
   "version": "0.0.1",
-  "description": "A car configurator app for Kunstmaan to show off my technical skills",
+  "description": "A car configurator app to show off my technical skills",
   "main": "index.js",
   "scripts": {
     "test": "jest",
